@@ -7,6 +7,11 @@ const personalFields = [
     label: 'Full name',
   },
   {
+    autoComplete: 'organization-title',
+    id: 'jobTitle',
+    label: 'Job title',
+  },
+  {
     autoComplete: 'email',
     hint: 'recommended',
     id: 'email',
@@ -21,10 +26,34 @@ const personalFields = [
     type: 'tel',
   },
   {
-    autoComplete: 'street-address',
+    autoComplete: 'address-level2',
     hint: 'recommended',
-    id: 'address',
-    label: 'Address',
+    id: 'location',
+    label: 'Location',
+  },
+  {
+    id: 'dateOfBirth',
+    label: 'Date of birth',
+  },
+  {
+    autoComplete: 'country-name',
+    id: 'nationality',
+    label: 'Nationality',
+  },
+  {
+    id: 'github',
+    label: 'GitHub',
+    type: 'url',
+  },
+  {
+    id: 'linkedin',
+    label: 'LinkedIn',
+    type: 'url',
+  },
+  {
+    id: 'xTwitter',
+    label: 'X / Twitter',
+    type: 'url',
   },
 ];
 

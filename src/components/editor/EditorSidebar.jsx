@@ -7,7 +7,7 @@ function getEducationLabel(entry) {
 }
 
 function getExperienceLabel(entry) {
-  return entry.company || 'Untitled experience';
+  return entry.company || entry.jobTitle || 'Untitled experience';
 }
 
 export default function EditorSidebar({
@@ -15,7 +15,6 @@ export default function EditorSidebar({
   onClearResume,
   onLoadExample,
   onPersonalChange,
-  onToggleEntryVisibility,
   resume,
 }) {
   const educationEntries = resume.education.map((entry) => ({
@@ -45,9 +44,6 @@ export default function EditorSidebar({
         entries={educationEntries}
         iconName="graduationCap"
         onAdd={() => onAddEntry('education')}
-        onToggleEntryVisibility={(entryId) =>
-          onToggleEntryVisibility('education', entryId)
-        }
         title="Education"
       />
 
@@ -56,9 +52,6 @@ export default function EditorSidebar({
         entries={experienceEntries}
         iconName="briefcase"
         onAdd={() => onAddEntry('experience')}
-        onToggleEntryVisibility={(entryId) =>
-          onToggleEntryVisibility('experience', entryId)
-        }
         title="Experience"
       />
     </div>

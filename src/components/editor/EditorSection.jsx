@@ -44,7 +44,11 @@ export default function EditorSection({
             <EntryListItem
               entry={entry}
               key={entry.id}
-              onToggleVisibility={() => onToggleEntryVisibility(entry.id)}
+              onToggleVisibility={
+                onToggleEntryVisibility
+                  ? () => onToggleEntryVisibility(entry.id)
+                  : undefined
+              }
             />
           ))}
         </ul>

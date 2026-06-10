@@ -9,8 +9,17 @@ export default function ExperienceEntryPreview({ entry }) {
       </div>
       <div className="resume-entry__details">
         <h3>{entry.company}</h3>
-        {entry.role && <p>{entry.role}</p>}
-        {entry.summary && <p className="resume-entry__summary">{entry.summary}</p>}
+        {entry.jobTitle && <p>{entry.jobTitle}</p>}
+        {entry.summary && (
+          <p className="resume-entry__summary">{entry.summary}</p>
+        )}
+        {entry.achievements?.length > 0 && (
+          <ul className="resume-entry__bullets">
+            {entry.achievements.map((achievement) => (
+              <li key={achievement}>{achievement}</li>
+            ))}
+          </ul>
+        )}
       </div>
     </article>
   );

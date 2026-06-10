@@ -11,7 +11,6 @@ node_modules
 dist
 dist-ssr
 *.local
-COMPONENT_BLOCK_EXPLANATIONS.md
 PROMPT.md
 CLAUDE.md
 cv-builder.html

@@ -158,7 +158,7 @@ Keep example data aligned with the content shown in `cv-builder.html` and `cv-bu
 5. Rebuild layout
 
    - Update `AppShell` to match the fixed sidebar plus flexible preview design.
-   - Make the sidebar usable at smaller widths; stack panes on narrow screens if needed.
+   - Make the sidebar usable at smaller widths.
 
 6. Build editor primitives
 

@@ -5,9 +5,11 @@ import EntryListItem from './EntryListItem.jsx';
 
 export default function EditorSection({
   addLabel,
+  children,
   defaultOpen = false,
-  entries,
+  entries = [],
   iconName,
+  marker,
   onAdd,
   onToggleEntryVisibility,
   title,
@@ -19,8 +21,9 @@ export default function EditorSection({
     <section className={`editor-section ${isOpen ? 'is-open' : ''}`}>
       <header className="editor-section__header">
         <h2 className="editor-section__title">
-          <Icon name={iconName} />
+          {iconName && <Icon name={iconName} />}
           <span>{title}</span>
+          {marker && <span className="editor-section__marker">{marker}</span>}
         </h2>
         <button
           type="button"
@@ -39,25 +42,31 @@ export default function EditorSection({
         hidden={!isOpen}
         id={contentId}
       >
-        <ul className="entry-list" aria-label={`${title} entries`}>
-          {entries.map((entry) => (
-            <EntryListItem
-              entry={entry}
-              key={entry.id}
-              onToggleVisibility={
-                onToggleEntryVisibility
-                  ? () => onToggleEntryVisibility(entry.id)
-                  : undefined
-              }
-            />
-          ))}
-        </ul>
+        {children ? (
+          <div className="editor-section__body">{children}</div>
+        ) : (
+          <ul className="entry-list" aria-label={`${title} entries`}>
+            {entries.map((entry) => (
+              <EntryListItem
+                entry={entry}
+                key={entry.id}
+                onToggleVisibility={
+                  onToggleEntryVisibility
+                    ? () => onToggleEntryVisibility(entry.id)
+                    : undefined
+                }
+              />
+            ))}
+          </ul>
+        )}
 
-        <footer className="editor-section__footer">
-          <Button icon={<Icon name="plus" />} onClick={onAdd} variant="pill">
-            {addLabel}
-          </Button>
-        </footer>
+        {onAdd && addLabel && (
+          <footer className="editor-section__footer">
+            <Button icon={<Icon name="plus" />} onClick={onAdd} variant="pill">
+              {addLabel}
+            </Button>
+          </footer>
+        )}
       </div>
     </section>
   );

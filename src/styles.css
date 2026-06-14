@@ -144,6 +144,11 @@ svg {
   transform: translateY(-1px);
 }
 
+.button:active,
+.icon-button:active {
+  transform: translateY(0);
+}
+
 .button:focus-visible,
 .icon-button:focus-visible,
 .form-field__input:focus-visible {
@@ -164,9 +169,27 @@ svg {
   background: var(--control-bg);
 }
 
+.button--primary {
+  background: #dbeafe;
+  color: #1e3a8a;
+}
+
+.button--primary:hover {
+  background: #bfdbfe;
+}
+
 .button--secondary:hover,
 .button--pill:hover {
   background: var(--control-bg-strong);
+}
+
+.button--success {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+.button--success:hover {
+  background: #16a34a;
 }
 
 .button--pill {
@@ -224,13 +247,22 @@ svg {
 .form-field__input {
   width: 100%;
   min-height: 5rem;
-  border: 0;
+  border: 0.1rem solid transparent;
   border-radius: var(--radius-control);
   background: var(--control-bg);
   color: var(--ink);
   font-size: 1.6rem;
   font-weight: 500;
   padding: 1.3rem 1.6rem;
+}
+
+.form-field__input:hover {
+  border-color: #cbd5e1;
+}
+
+.form-field__textarea {
+  min-height: 12rem;
+  resize: vertical;
 }
 
 .editor-section {
@@ -259,6 +291,16 @@ svg {
 .editor-section__title .icon {
   flex: 0 0 auto;
   font-size: 3.2rem;
+}
+
+.editor-section__marker {
+  border-radius: 999rem;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0.45rem 0.75rem;
 }
 
 .icon-button {
@@ -293,6 +335,12 @@ svg {
   border-top: 0.7rem solid var(--app-bg);
 }
 
+.editor-section__body {
+  display: grid;
+  gap: 1.6rem;
+  padding: 2rem;
+}
+
 .entry-list {
   list-style: none;
 }
@@ -325,6 +373,40 @@ svg {
   display: flex;
   justify-content: center;
   padding: 2.3rem 2rem 2.5rem;
+}
+
+.collection-card {
+  display: grid;
+  gap: 1.6rem;
+  border: 0.1rem solid var(--divider);
+  border-radius: 0.8rem;
+  background: #ffffff;
+  padding: 1.6rem;
+}
+
+.collection-card__header,
+.collection-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.collection-card__header h3 {
+  color: #111827;
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.collection-card__body {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.collection-card__actions {
+  justify-content: flex-end;
 }
 
 .preview-panel {

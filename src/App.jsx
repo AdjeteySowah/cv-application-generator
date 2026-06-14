@@ -70,6 +70,17 @@ export default function App() {
     }));
   }
 
+  function handleCollectionItemPatch(collectionName, itemId, patch) {
+    setResume((currentResume) => ({
+      ...currentResume,
+      [collectionName]: updateCollectionItem(
+        currentResume[collectionName],
+        itemId,
+        (item) => ({ ...item, ...patch }),
+      ),
+    }));
+  }
+
   function handleCollectionItemListChange(collectionName, itemId, field, value) {
     const values = value
       .split('\n')
@@ -97,6 +108,7 @@ export default function App() {
           onClearResume={() => setResume(createEmptyResume())}
           onCollectionItemChange={handleCollectionItemChange}
           onCollectionItemListChange={handleCollectionItemListChange}
+          onCollectionItemPatch={handleCollectionItemPatch}
           onLoadExample={() => setResume(createExampleResume())}
           onNestedFieldChange={handleNestedFieldChange}
           onPersonalChange={handlePersonalChange}

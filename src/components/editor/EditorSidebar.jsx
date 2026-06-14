@@ -1,31 +1,24 @@
 import ActionBar from './ActionBar.jsx';
+import CertificationForm from './CertificationForm.jsx';
+import EducationForm from './EducationForm.jsx';
 import EditorSection from './EditorSection.jsx';
+import ExperienceForm from './ExperienceForm.jsx';
 import PersonalDetailsForm from './PersonalDetailsForm.jsx';
-
-function getEducationLabel(entry) {
-  return entry.school || 'Untitled education';
-}
-
-function getExperienceLabel(entry) {
-  return entry.company || entry.jobTitle || 'Untitled experience';
-}
+import ProjectForm from './ProjectForm.jsx';
+import SkillsForm from './SkillsForm.jsx';
+import SummaryForm from './SummaryForm.jsx';
 
 export default function EditorSidebar({
   onAddEntry,
   onClearResume,
+  onCollectionItemPatch,
   onLoadExample,
+  onNestedFieldChange,
   onPersonalChange,
+  onRemoveEntry,
+  onSummaryChange,
   resume,
 }) {
-  const educationEntries = resume.education.map((entry) => ({
-    ...entry,
-    label: getEducationLabel(entry),
-  }));
-  const experienceEntries = resume.experience.map((entry) => ({
-    ...entry,
-    label: getExperienceLabel(entry),
-  }));
-
   return (
     <div className="editor-stack">
       <ActionBar
@@ -33,27 +26,108 @@ export default function EditorSidebar({
         onLoadExample={onLoadExample}
       />
 
-      <PersonalDetailsForm
-        onPersonalChange={onPersonalChange}
-        personalDetails={resume.personal}
-      />
+      <EditorSection defaultOpen iconName="user" title="Personal Details">
+        <PersonalDetailsForm
+          onPersonalChange={onPersonalChange}
+          personalDetails={resume.personal}
+        />
+      </EditorSection>
 
       <EditorSection
-        addLabel="Education"
         defaultOpen
-        entries={educationEntries}
-        iconName="graduationCap"
-        onAdd={() => onAddEntry('education')}
-        title="Education"
-      />
+        iconName="fileText"
+        title="Professional Summary"
+      >
+        <SummaryForm
+          onSummaryChange={onSummaryChange}
+          summary={resume.summary}
+        />
+      </EditorSection>
+
+      <EditorSection
+        addLabel="Project"
+        iconName="folder"
+        marker="Optional"
+        onAdd={() => onAddEntry('projects')}
+        title="Personal Projects"
+      >
+        {resume.projects.map((item) => (
+          <ProjectForm
+            item={item}
+            key={item.id}
+            onRemove={() => onRemoveEntry('projects', item.id)}
+            onSave={(draft) =>
+              onCollectionItemPatch('projects', item.id, draft)
+            }
+          />
+        ))}
+      </EditorSection>
+
+      <EditorSection defaultOpen iconName="wand" title="Skills">
+        <SkillsForm
+          onSkillsChange={(field, value) =>
+            onNestedFieldChange('skills', field, value)
+          }
+          skills={resume.skills}
+        />
+      </EditorSection>
 
       <EditorSection
         addLabel="Experience"
-        entries={experienceEntries}
         iconName="briefcase"
+        marker="Optional"
         onAdd={() => onAddEntry('experience')}
         title="Experience"
-      />
+      >
+        {resume.experience.map((item) => (
+          <ExperienceForm
+            item={item}
+            key={item.id}
+            onRemove={() => onRemoveEntry('experience', item.id)}
+            onSave={(draft) =>
+              onCollectionItemPatch('experience', item.id, draft)
+            }
+          />
+        ))}
+      </EditorSection>
+
+      <EditorSection
+        addLabel="Education"
+        iconName="award"
+        marker="Optional"
+        onAdd={() => onAddEntry('education')}
+        title="Education"
+      >
+        {resume.education.map((item) => (
+          <EducationForm
+            item={item}
+            key={item.id}
+            onRemove={() => onRemoveEntry('education', item.id)}
+            onSave={(draft) =>
+              onCollectionItemPatch('education', item.id, draft)
+            }
+          />
+        ))}
+      </EditorSection>
+
+      <EditorSection
+        addLabel="Certification"
+        iconName="graduationCap"
+        marker="Optional"
+        onAdd={() => onAddEntry('certifications')}
+        title="Certifications & Awards"
+      >
+        {resume.certifications.map((item) => (
+          <CertificationForm
+            item={item}
+            key={item.id}
+            onRemove={() => onRemoveEntry('certifications', item.id)}
+            onSave={(draft) =>
+              onCollectionItemPatch('certifications', item.id, draft)
+            }
+          />
+        ))}
+      </EditorSection>
     </div>
   );
 }

@@ -4,30 +4,27 @@ const personalFields = [
   {
     autoComplete: 'name',
     id: 'fullName',
-    label: 'Full name',
+    label: 'Full Name',
   },
   {
     autoComplete: 'organization-title',
     id: 'jobTitle',
-    label: 'Job title',
-  },
-  {
-    autoComplete: 'email',
-    hint: 'recommended',
-    id: 'email',
-    label: 'Email',
-    type: 'email',
+    label: 'Job Title',
   },
   {
     autoComplete: 'tel',
-    hint: 'recommended',
     id: 'phone',
-    label: 'Phone number',
+    label: 'Phone Number',
     type: 'tel',
   },
   {
+    autoComplete: 'email',
+    id: 'email',
+    label: 'Email Address',
+    type: 'email',
+  },
+  {
     autoComplete: 'address-level2',
-    hint: 'recommended',
     id: 'location',
     label: 'Location',
   },
@@ -42,17 +39,23 @@ const personalFields = [
   },
   {
     id: 'github',
+    hint: 'optional',
     label: 'GitHub',
+    placeholder: 'https://github.com/username',
     type: 'url',
   },
   {
     id: 'linkedin',
+    hint: 'optional',
     label: 'LinkedIn',
+    placeholder: 'https://linkedin.com/in/username',
     type: 'url',
   },
   {
     id: 'xTwitter',
-    label: 'X / Twitter',
+    hint: 'optional',
+    label: 'X (Twitter)',
+    placeholder: 'https://twitter.com/username',
     type: 'url',
   },
 ];
@@ -63,11 +66,11 @@ export default function PersonalDetailsForm({
 }) {
   return (
     <form
-      className="card personal-details-form"
+      className="editor-form personal-details-form"
       onSubmit={(event) => event.preventDefault()}
     >
       <fieldset>
-        <legend>Personal Details</legend>
+        <legend className="sr-only">Personal Details</legend>
         {personalFields.map((field) => (
           <TextInput
             autoComplete={field.autoComplete}
@@ -78,6 +81,7 @@ export default function PersonalDetailsForm({
             onChange={(event) =>
               onPersonalChange(field.id, event.target.value)
             }
+            placeholder={field.placeholder}
             type={field.type}
             value={personalDetails[field.id]}
           />

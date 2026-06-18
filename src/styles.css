@@ -24,6 +24,8 @@
   --chip-bg: #e0f2fe;
   --chip-text: #075985;
   --control-frame: #f0f2f5;
+  --download-bg: #374151;
+  --download-bg-strong: #1f2937;
   --hover-scrim: rgb(15 23 42 / 7%);
   --focus-ring: rgb(37 99 235 / 28%);
   --surface-on-dark: #ffffff;
@@ -242,6 +244,15 @@ svg {
   background: var(--success-strong);
 }
 
+.button--download {
+  background: var(--download-bg);
+  color: var(--surface);
+}
+
+.button--download:hover {
+  background: var(--download-bg-strong);
+}
+
 .button--pill {
   min-height: 5.2rem;
   padding: 0 2.2rem;
@@ -427,6 +438,21 @@ svg {
   display: flex;
   justify-content: center;
   padding: 2.3rem 2rem 2.5rem;
+}
+
+.download-wrapper {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  border-top: 0.1rem solid var(--divider);
+  background: var(--surface);
+  margin: 0 -1.6rem -1.6rem;
+  padding: 1.4rem 1.6rem;
+}
+
+.download-button {
+  width: 100%;
+  box-shadow: 0 0.6rem 1.4rem rgb(55 65 81 / 18%);
 }
 
 .collection-card {
@@ -833,5 +859,55 @@ svg {
 
   .resume-skills li {
     font-size: 1.35rem;
+  }
+}
+
+@media print {
+  @page {
+    margin: 0.55in;
+    size: A4;
+  }
+
+  html,
+  body,
+  #root {
+    background: var(--surface);
+    min-width: 0;
+  }
+
+  .app-shell {
+    display: block;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    background: var(--surface);
+  }
+
+  .mobile-editor-bar,
+  .editor-panel {
+    display: none;
+  }
+
+  .preview-panel {
+    overflow: visible;
+    padding: 0;
+  }
+
+  .resume-page {
+    width: 100%;
+    min-height: 0;
+    box-shadow: none;
+  }
+
+  .resume-header {
+    break-inside: avoid;
+  }
+
+  .resume-section,
+  .resume-project,
+  .resume-experience,
+  .resume-education,
+  .resume-certification {
+    break-inside: avoid;
   }
 }

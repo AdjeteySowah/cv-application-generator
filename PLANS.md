@@ -208,9 +208,15 @@ Keep example data aligned with the content shown in `cv-builder.html` and `cv-bu
     - Iterate until the screenshot is visually close to the reference.
 
 14. Documentation and final handoff
-    - Update README only if run instructions or user-facing behavior change.
+    Create a markdown file and name it HANDOFF.md. This file shouldn't be tracked by git. Inside this file do these:
+
     - Summarize components created/refactored and explain why the structure is maintainable.
     - Mention branch, commits, assumptions, limitations, and follow-up work.
+
+15. Documentation in README.md
+
+    - The current README.md file is empty. It has only a title.
+    - In it, complete the markdown file by adding details of the CV builder app. It should have fields like Project Title with Description, Features, Usage, Sceenshots, Installation, Credits etc.
 
 ## Constraints
 

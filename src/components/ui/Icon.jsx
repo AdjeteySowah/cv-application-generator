@@ -14,6 +14,13 @@ const iconPaths = {
     </>
   ),
   chevronDown: <path d="m6 9 4 4 4-4" />,
+  download: (
+    <>
+      <path d="M10 3.75v8.5" />
+      <path d="m6.75 9 3.25 3.25L13.25 9" />
+      <path d="M4.75 15.25h10.5" />
+    </>
+  ),
   fileText: (
     <>
       <path d="M5.25 2.75h6.5l3 3v11.5H5.25V2.75Z" />

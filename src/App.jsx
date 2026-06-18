@@ -99,6 +99,10 @@ export default function App() {
     }));
   }
 
+  function handleDownloadResume() {
+    window.print();
+  }
+
   return (
     <AppShell
       editor={
@@ -109,6 +113,7 @@ export default function App() {
           onCollectionItemChange={handleCollectionItemChange}
           onCollectionItemListChange={handleCollectionItemListChange}
           onCollectionItemPatch={handleCollectionItemPatch}
+          onDownloadResume={handleDownloadResume}
           onLoadExample={() => setResume(createExampleResume())}
           onNestedFieldChange={handleNestedFieldChange}
           onPersonalChange={handlePersonalChange}

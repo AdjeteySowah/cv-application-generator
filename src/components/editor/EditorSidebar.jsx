@@ -7,6 +7,8 @@ import PersonalDetailsForm from './PersonalDetailsForm.jsx';
 import ProjectForm from './ProjectForm.jsx';
 import SkillsForm from './SkillsForm.jsx';
 import SummaryForm from './SummaryForm.jsx';
+import Button from '../ui/Button.jsx';
+import Icon from '../ui/Icon.jsx';
 
 function getItemSnapshotKey(item) {
   return `${item.id}-${JSON.stringify(item)}`;
@@ -16,6 +18,7 @@ export default function EditorSidebar({
   onAddEntry,
   onClearResume,
   onCollectionItemPatch,
+  onDownloadResume,
   onLoadExample,
   onNestedFieldChange,
   onPersonalChange,
@@ -132,6 +135,17 @@ export default function EditorSidebar({
           />
         ))}
       </EditorSection>
+
+      <footer className="download-wrapper">
+        <Button
+          className="download-button"
+          icon={<Icon name="download" />}
+          onClick={onDownloadResume}
+          variant="download"
+        >
+          Download Resume
+        </Button>
+      </footer>
     </div>
   );
 }

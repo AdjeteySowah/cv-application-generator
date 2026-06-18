@@ -77,6 +77,14 @@ const iconPaths = {
       <path d="m6 8 1 8h6l1-8" />
     </>
   ),
+  sliders: (
+    <>
+      <path d="M4 6h12" />
+      <path d="M4 14h12" />
+      <path d="M7 4v4" />
+      <path d="M13 12v4" />
+    </>
+  ),
   user: (
     <>
       <path d="M10 10.25a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z" />
@@ -91,6 +99,12 @@ const iconPaths = {
       <path d="M4 5.5h2" />
       <path d="M15 12.5v2" />
       <path d="M14 13.5h2" />
+    </>
+  ),
+  x: (
+    <>
+      <path d="m5.5 5.5 9 9" />
+      <path d="m14.5 5.5-9 9" />
     </>
   ),
 };

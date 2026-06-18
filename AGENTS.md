@@ -6,8 +6,6 @@ This is a Vite + React CV application generator. The current rebuild target is b
 
 - `cv-builder.png`
 - `cv-builder.html`
-- `PROMPT.md`
-- `CLAUDE.md`
 - `PLANS.md`
 
 Follow `PLANS.md` for the step-by-step rebuild plan before writing implementation code.
@@ -125,6 +123,9 @@ These names are guidance, not a hard contract. Follow existing project patterns 
 
 ## Testing And Validation
 
+(This project uses Node installed through nvm in WSL.
+Before running npm, node, vite, eslint, or build commands, run:
+source ~/.nvm/nvm.sh)
 Before considering a rebuild complete:
 
 - Run `npm run lint`.

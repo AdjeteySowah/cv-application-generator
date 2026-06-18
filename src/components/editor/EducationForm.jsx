@@ -1,13 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TextInput from '../ui/TextInput.jsx';
 import CollectionItemCard from './CollectionItemCard.jsx';
 
 export default function EducationForm({ item, onRemove, onSave }) {
   const [draft, setDraft] = useState(item);
-
-  useEffect(() => {
-    setDraft(item);
-  }, [item]);
 
   function updateDraft(field, value) {
     setDraft((currentDraft) => ({ ...currentDraft, [field]: value }));

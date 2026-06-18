@@ -2,19 +2,37 @@
 
 :root {
   --app-bg: #f1f5f9;
-  --card-bg: #ffffff;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
   --control-bg: #f8fafc;
   --control-bg-strong: #e2e8f0;
   --ink: #0f172a;
+  --ink-strong: #111827;
+  --text: #334155;
   --muted: #64748b;
+  --muted-light: #94a3b8;
   --danger: #dc2626;
+  --danger-soft: rgb(220 38 38 / 8%);
+  --success: #22c55e;
+  --success-strong: #16a34a;
   --divider: #e2e8f0;
+  --line: #cbd5e1;
+  --blue: #2563eb;
+  --blue-dark: #1e3a8a;
+  --blue-soft: #dbeafe;
+  --blue-soft-strong: #bfdbfe;
+  --chip-bg: #e0f2fe;
+  --chip-text: #075985;
+  --control-frame: #f0f2f5;
+  --hover-scrim: rgb(15 23 42 / 7%);
+  --focus-ring: rgb(37 99 235 / 28%);
+  --surface-on-dark: #ffffff;
   --resume-blue: #113d52;
   --resume-blue-dark: #0d374b;
-  --shadow-soft: 0 1.8rem 4.5rem rgb(30 41 59 / 12%);
-  --shadow-page: 0 2.2rem 3.6rem rgb(15 23 42 / 18%);
+  --shadow-page: 0 1.6rem 3.8rem rgb(15 23 42 / 14%);
   --radius-card: 0.8rem;
-  --radius-control: 1.1rem;
+  --radius-control: 0.7rem;
+  --radius-pill: 999rem;
 }
 
 * {
@@ -46,7 +64,8 @@ body {
 }
 
 button,
-input {
+input,
+textarea {
   font: inherit;
 }
 
@@ -97,7 +116,7 @@ svg {
   min-height: 0;
   overflow-y: auto;
   border-right: 0.1rem solid var(--divider);
-  background: #ffffff;
+  background: var(--surface);
 }
 
 .editor-stack {
@@ -106,12 +125,11 @@ svg {
   padding: 1.6rem;
 }
 
-.card,
 .action-bar,
 .editor-section {
   border: 0.1rem solid var(--divider);
   border-radius: var(--radius-card);
-  background: var(--card-bg);
+  background: var(--surface);
   box-shadow: none;
 }
 
@@ -133,11 +151,7 @@ svg {
   color: var(--ink);
   font-weight: 800;
   line-height: 1;
-  transition:
-    background 160ms ease,
-    color 160ms ease,
-    box-shadow 160ms ease,
-    transform 160ms ease;
+  transition: transform 160ms ease;
 }
 
 .button:hover {
@@ -151,8 +165,10 @@ svg {
 
 .button:focus-visible,
 .icon-button:focus-visible,
+.resume-social-list a:focus-visible,
+.resume-project__link:focus-visible,
 .form-field__input:focus-visible {
-  outline: 0.3rem solid rgb(17 61 82 / 28%);
+  outline: 0.3rem solid var(--focus-ring);
   outline-offset: 0.3rem;
 }
 
@@ -162,7 +178,7 @@ svg {
 }
 
 .button--dangerGhost:hover {
-  background: rgb(201 37 28 / 8%);
+  background: var(--danger-soft);
 }
 
 .button--secondary {
@@ -170,12 +186,12 @@ svg {
 }
 
 .button--primary {
-  background: #dbeafe;
-  color: #1e3a8a;
+  background: var(--blue-soft);
+  color: var(--blue-dark);
 }
 
 .button--primary:hover {
-  background: #bfdbfe;
+  background: var(--blue-soft-strong);
 }
 
 .button--secondary:hover,
@@ -184,20 +200,20 @@ svg {
 }
 
 .button--success {
-  background: #22c55e;
-  color: #ffffff;
+  background: var(--success);
+  color: var(--surface);
 }
 
 .button--success:hover {
-  background: #16a34a;
+  background: var(--success-strong);
 }
 
 .button--pill {
   min-height: 5.2rem;
   padding: 0 2.2rem;
-  border: 0.5rem solid #f0f2f5;
-  border-radius: 999rem;
-  background: #ffffff;
+  border: 0.5rem solid var(--control-frame);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
   font-size: 1.6rem;
 }
 
@@ -264,7 +280,7 @@ svg {
 }
 
 .form-field__input:hover {
-  border-color: #cbd5e1;
+  border-color: var(--line);
 }
 
 .form-field__textarea {
@@ -301,9 +317,9 @@ svg {
 }
 
 .editor-section__marker {
-  border-radius: 999rem;
-  background: #dbeafe;
-  color: #1d4ed8;
+  border-radius: var(--radius-pill);
+  background: var(--blue-soft);
+  color: var(--blue);
   font-size: 1.2rem;
   font-weight: 800;
   line-height: 1;
@@ -316,18 +332,15 @@ svg {
   height: 4rem;
   place-items: center;
   border: 0;
-  border-radius: 999rem;
+  border-radius: var(--radius-pill);
   background: transparent;
   color: currentColor;
   font-size: 2.4rem;
-  transition:
-    background 160ms ease,
-    color 160ms ease,
-    transform 160ms ease;
+  transition: transform 160ms ease;
 }
 
 .icon-button:hover {
-  background: rgb(15 23 42 / 7%);
+  background: var(--hover-scrim);
 }
 
 .editor-section__toggle {
@@ -363,7 +376,7 @@ svg {
 }
 
 .entry-list__item.is-muted {
-  color: #4c5259;
+  color: var(--muted);
 }
 
 .entry-list__label {
@@ -373,7 +386,7 @@ svg {
 }
 
 .entry-list__visibility {
-  color: #5f666e;
+  color: var(--muted);
 }
 
 .editor-section__footer {
@@ -387,7 +400,7 @@ svg {
   gap: 1.6rem;
   border: 0.1rem solid var(--divider);
   border-radius: 0.8rem;
-  background: #ffffff;
+  background: var(--surface-muted);
   padding: 1.6rem;
 }
 
@@ -401,7 +414,7 @@ svg {
 }
 
 .collection-card__header h3 {
-  color: #111827;
+  color: var(--ink-strong);
   font-size: 1.8rem;
   font-weight: 800;
   line-height: 1.2;
@@ -428,7 +441,7 @@ svg {
   min-height: 145.8rem;
   margin: 0 auto;
   overflow: hidden;
-  background: #ffffff;
+  background: var(--surface);
   box-shadow: var(--shadow-page);
 }
 
@@ -440,7 +453,7 @@ svg {
   justify-items: center;
   padding: 4.5rem 5.6rem;
   background: var(--resume-blue);
-  color: #ffffff;
+  color: var(--surface-on-dark);
   text-align: center;
 }
 
@@ -476,7 +489,7 @@ svg {
 
 .resume-meta-list li {
   border: 0.1rem solid rgb(255 255 255 / 28%);
-  border-radius: 999rem;
+  border-radius: var(--radius-pill);
   color: rgb(255 255 255 / 82%);
   font-size: 1.5rem;
   font-weight: 700;
@@ -495,8 +508,8 @@ svg {
 .resume-social-list a {
   display: inline-flex;
   border: 0.1rem solid rgb(255 255 255 / 30%);
-  border-radius: 999rem;
-  color: #ffffff;
+  border-radius: var(--radius-pill);
+  color: var(--surface);
   font-size: 1.5rem;
   font-weight: 700;
   padding: 0.45rem 1.2rem;
@@ -524,7 +537,7 @@ svg {
 }
 
 .resume-section__title {
-  border-bottom: 0.2rem solid #111827;
+  border-bottom: 0.2rem solid var(--ink-strong);
   color: var(--resume-blue-dark);
   font-size: 1.8rem;
   font-weight: 800;
@@ -540,7 +553,7 @@ svg {
 }
 
 .resume-summary {
-  color: #334155;
+  color: var(--text);
   font-size: 2rem;
   line-height: 1.55;
 }
@@ -573,7 +586,7 @@ svg {
 .resume-experience__header h3,
 .resume-education h3,
 .resume-certification h3 {
-  color: #111827;
+  color: var(--ink-strong);
   font-size: 2rem;
   font-weight: 800;
   line-height: 1.25;
@@ -583,7 +596,7 @@ svg {
 .resume-experience__header p,
 .resume-education__date,
 .resume-certification__date {
-  color: #475569;
+  color: var(--muted);
   font-size: 2rem;
   font-weight: 700;
   text-align: right;
@@ -591,8 +604,12 @@ svg {
 }
 
 .resume-project__link {
-  color: #2563eb;
+  color: var(--blue);
   overflow-wrap: anywhere;
+}
+
+.resume-project__link:hover {
+  text-decoration-thickness: 0.2rem;
 }
 
 .resume-project__tools,
@@ -600,7 +617,7 @@ svg {
 .resume-experience__location,
 .resume-education p,
 .resume-certification p {
-  color: #334155;
+  color: var(--text);
   font-size: 1.8rem;
   font-weight: 600;
 }
@@ -613,9 +630,9 @@ svg {
 }
 
 .resume-skills li {
-  border-radius: 999rem;
-  background: #e0f2fe;
-  color: #075985;
+  border-radius: var(--radius-pill);
+  background: var(--chip-bg);
+  color: var(--chip-text);
   font-size: 1.6rem;
   font-weight: 800;
   padding: 0.65rem 1.25rem;

@@ -8,6 +8,10 @@ import ProjectForm from './ProjectForm.jsx';
 import SkillsForm from './SkillsForm.jsx';
 import SummaryForm from './SummaryForm.jsx';
 
+function getItemSnapshotKey(item) {
+  return `${item.id}-${JSON.stringify(item)}`;
+}
+
 export default function EditorSidebar({
   onAddEntry,
   onClearResume,
@@ -54,7 +58,7 @@ export default function EditorSidebar({
         {resume.projects.map((item) => (
           <ProjectForm
             item={item}
-            key={item.id}
+            key={getItemSnapshotKey(item)}
             onRemove={() => onRemoveEntry('projects', item.id)}
             onSave={(draft) =>
               onCollectionItemPatch('projects', item.id, draft)
@@ -82,7 +86,7 @@ export default function EditorSidebar({
         {resume.experience.map((item) => (
           <ExperienceForm
             item={item}
-            key={item.id}
+            key={getItemSnapshotKey(item)}
             onRemove={() => onRemoveEntry('experience', item.id)}
             onSave={(draft) =>
               onCollectionItemPatch('experience', item.id, draft)
@@ -101,7 +105,7 @@ export default function EditorSidebar({
         {resume.education.map((item) => (
           <EducationForm
             item={item}
-            key={item.id}
+            key={getItemSnapshotKey(item)}
             onRemove={() => onRemoveEntry('education', item.id)}
             onSave={(draft) =>
               onCollectionItemPatch('education', item.id, draft)
@@ -120,7 +124,7 @@ export default function EditorSidebar({
         {resume.certifications.map((item) => (
           <CertificationForm
             item={item}
-            key={item.id}
+            key={getItemSnapshotKey(item)}
             onRemove={() => onRemoveEntry('certifications', item.id)}
             onSave={(draft) =>
               onCollectionItemPatch('certifications', item.id, draft)

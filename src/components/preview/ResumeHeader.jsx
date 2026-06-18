@@ -22,6 +22,20 @@ export default function ResumeHeader({ personal }) {
   const metaItems = [personal.dateOfBirth, personal.nationality].filter(
     Boolean,
   );
+  const socialItems = [
+    {
+      label: 'GitHub',
+      value: personal.github,
+    },
+    {
+      label: 'LinkedIn',
+      value: personal.linkedin,
+    },
+    {
+      label: 'X (Twitter)',
+      value: personal.xTwitter,
+    },
+  ].filter((item) => item.value);
 
   return (
     <header className="resume-header">
@@ -35,6 +49,15 @@ export default function ResumeHeader({ personal }) {
             <li key={item.label}>
               <Icon name={item.iconName} />
               <span>{item.value}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {socialItems.length > 0 && (
+        <ul className="resume-social-list" aria-label="Social links">
+          {socialItems.map((item) => (
+            <li key={item.label}>
+              <a href={item.value}>{item.label}</a>
             </li>
           ))}
         </ul>

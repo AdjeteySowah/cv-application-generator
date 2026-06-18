@@ -86,7 +86,7 @@ svg {
 
 .app-shell {
   display: grid;
-  grid-template-columns: 28.8rem minmax(0, 1fr);
+  grid-template-columns: clamp(36rem, 31vw, 46rem) minmax(0, 1fr);
   height: 100vh;
   min-height: 100vh;
   overflow: hidden;
@@ -457,11 +457,12 @@ svg {
   line-height: 1.05;
 }
 
-.resume-contact-list {
+.resume-contact-list,
+.resume-social-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.8rem 2.4rem;
+  gap: 1rem 1.8rem;
   list-style: none;
 }
 
@@ -491,6 +492,21 @@ svg {
   font-weight: 600;
 }
 
+.resume-social-list a {
+  display: inline-flex;
+  border: 0.1rem solid rgb(255 255 255 / 30%);
+  border-radius: 999rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0.45rem 1.2rem;
+  text-decoration: none;
+}
+
+.resume-social-list a:hover {
+  background: rgb(255 255 255 / 12%);
+}
+
 .resume-contact-list .icon {
   flex: 0 0 auto;
   font-size: 2.4rem;
@@ -508,14 +524,14 @@ svg {
 }
 
 .resume-section__title {
-  border-radius: 0.2rem;
-  background: #e9eef1;
+  border-bottom: 0.2rem solid #111827;
   color: var(--resume-blue-dark);
-  font-size: 2.6rem;
+  font-size: 1.8rem;
   font-weight: 800;
-  line-height: 1.1;
-  padding: 0.8rem 1.6rem;
-  text-align: center;
+  letter-spacing: 0;
+  line-height: 1.2;
+  padding-bottom: 0.8rem;
+  text-transform: uppercase;
 }
 
 .resume-section__content {
@@ -529,29 +545,80 @@ svg {
   line-height: 1.55;
 }
 
-.resume-entry {
+.resume-projects,
+.resume-certifications {
   display: grid;
-  grid-template-columns: 19.5rem minmax(0, 1fr);
-  gap: 2.4rem;
+  gap: 2.8rem;
+}
+
+.resume-project,
+.resume-experience {
+  display: grid;
+  gap: 0.8rem;
   font-size: 2rem;
-  line-height: 1.32;
+  line-height: 1.4;
 }
 
-.resume-entry__meta {
-  font-weight: 500;
-}
-
-.resume-entry__details {
+.resume-project__header,
+.resume-experience__header,
+.resume-education,
+.resume-certification {
   display: grid;
-  gap: 0.2rem;
-  min-width: 0;
-  font-weight: 500;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  gap: 2rem;
+  align-items: start;
 }
 
-.resume-entry__details h3 {
+.resume-project__header h3,
+.resume-experience__header h3,
+.resume-education h3,
+.resume-certification h3 {
+  color: #111827;
   font-size: 2rem;
   font-weight: 800;
   line-height: 1.25;
+}
+
+.resume-project__header p,
+.resume-experience__header p,
+.resume-education__date,
+.resume-certification__date {
+  color: #475569;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.resume-project__link {
+  color: #2563eb;
+  overflow-wrap: anywhere;
+}
+
+.resume-project__tools,
+.resume-experience__company,
+.resume-experience__location,
+.resume-education p,
+.resume-certification p {
+  color: #334155;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.resume-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+}
+
+.resume-skills li {
+  border-radius: 999rem;
+  background: #e0f2fe;
+  color: #075985;
+  font-size: 1.6rem;
+  font-weight: 800;
+  padding: 0.65rem 1.25rem;
 }
 
 .resume-entry__summary {
@@ -564,6 +631,10 @@ svg {
   gap: 0.7rem;
   margin-top: 0.9rem;
   padding-left: 2.2rem;
+}
+
+.resume-entry__bullets li {
+  padding-left: 0.4rem;
 }
 
 @media (max-width: 900px) {
@@ -588,6 +659,22 @@ svg {
   .preview-panel {
     overflow-x: auto;
     padding: 2.4rem 1.6rem 4rem;
+  }
+
+  .resume-project__header,
+  .resume-experience__header,
+  .resume-education,
+  .resume-certification {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .resume-project__header p,
+  .resume-experience__header p,
+  .resume-education__date,
+  .resume-certification__date {
+    text-align: left;
+    white-space: normal;
   }
 }
 

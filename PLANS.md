@@ -10,7 +10,7 @@
 
 The rebuild should produce a two-pane CV builder for Desktop view:
 
-- A fixed-width left editor sidebar, about `288px` wide, white background, subtle right border, stacked accordion sections, and a bottom download button.
+- A roomy left editor sidebar with a responsive width, white background, subtle right border, stacked accordion sections, and a bottom download button.
 - A large right resume preview on a white canvas with generous page padding, centered candidate header, contact/meta/social chips, and resume content sections.
 - Compact form controls using Plus Jakarta Sans, small labels, pale input backgrounds, slate borders, and restrained button styling.
 - Resume preview sections with uppercase headings, dark underline rules, `16px` body text, chip-style skills, and right-aligned dates for experience, education, and certifications.

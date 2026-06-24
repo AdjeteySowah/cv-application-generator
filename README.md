@@ -2,7 +2,7 @@
 
 CV Generator/Builder App is a Vite + React application for building a polished, document-style CV. It provides a compact editor sidebar for personal details, professional summary, projects, skills, experience, education, and certifications, while rendering a live resume preview beside it.
 
-Live demo: not hosted yet.
+Live demo: https://cv-application-generator-seven.vercel.app/
 
 ## Features
 

@@ -22,6 +22,7 @@ export default function EducationForm({ item, onRemove, onSave }) {
         label="School Name"
         onChange={(event) => updateDraft('school', event.target.value)}
         placeholder="E.g. Accra Academy (High School)"
+        required
         value={draft.school}
       />
       <TextInput
@@ -29,6 +30,7 @@ export default function EducationForm({ item, onRemove, onSave }) {
         label="Location"
         onChange={(event) => updateDraft('location', event.target.value)}
         placeholder="E.g. Kaneshie"
+        required
         value={draft.location}
       />
       <TextInput
@@ -45,6 +47,7 @@ export default function EducationForm({ item, onRemove, onSave }) {
           label="Start Date"
           onChange={(event) => updateDraft('startDate', event.target.value)}
           placeholder="E.g. Oct 2018"
+          required
           value={draft.startDate}
         />
         <TextInput
@@ -52,6 +55,7 @@ export default function EducationForm({ item, onRemove, onSave }) {
           label="End Date"
           onChange={(event) => updateDraft('endDate', event.target.value)}
           placeholder="E.g. Oct 2021"
+          required
           value={draft.endDate}
         />
       </div>

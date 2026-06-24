@@ -22,6 +22,7 @@ export default function CertificationForm({ item, onRemove, onSave }) {
         label="Issuer"
         onChange={(event) => updateDraft('issuer', event.target.value)}
         placeholder="E.g. freeCodeCamp"
+        required
         value={draft.issuer}
       />
       <TextInput
@@ -29,6 +30,7 @@ export default function CertificationForm({ item, onRemove, onSave }) {
         label="Certificate / Award Name"
         onChange={(event) => updateDraft('name', event.target.value)}
         placeholder="E.g. Responsive Web Design"
+        required
         value={draft.name}
       />
       <TextInput
@@ -36,6 +38,7 @@ export default function CertificationForm({ item, onRemove, onSave }) {
         label="Date Acquired"
         onChange={(event) => updateDraft('dateAcquired', event.target.value)}
         placeholder="E.g. 2023"
+        required
         value={draft.dateAcquired}
       />
     </CollectionItemCard>

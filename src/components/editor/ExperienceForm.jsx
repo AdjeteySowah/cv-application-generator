@@ -30,6 +30,7 @@ export default function ExperienceForm({ item, onRemove, onSave }) {
         label="Job Title"
         onChange={(event) => updateDraft('jobTitle', event.target.value)}
         placeholder="E.g. Digital Marketing Associate"
+        required
         value={draft.jobTitle}
       />
       <TextInput
@@ -37,6 +38,7 @@ export default function ExperienceForm({ item, onRemove, onSave }) {
         label="Company"
         onChange={(event) => updateDraft('company', event.target.value)}
         placeholder="E.g. Bright Horizon Media"
+        required
         value={draft.company}
       />
       <div className="form-row">
@@ -45,6 +47,7 @@ export default function ExperienceForm({ item, onRemove, onSave }) {
           label="Start Date"
           onChange={(event) => updateDraft('startDate', event.target.value)}
           placeholder="E.g. July 2023"
+          required
           value={draft.startDate}
         />
         <TextInput
@@ -52,6 +55,7 @@ export default function ExperienceForm({ item, onRemove, onSave }) {
           label="End Date"
           onChange={(event) => updateDraft('endDate', event.target.value)}
           placeholder="E.g. Dec 2024 / Present"
+          required
           value={draft.endDate}
         />
       </div>
@@ -63,6 +67,7 @@ export default function ExperienceForm({ item, onRemove, onSave }) {
           updateDraft('achievements', value.split('\n'))
         }
         placeholder="Managed social media campaigns across multiple platforms..."
+        required
       />
     </CollectionItemCard>
   );

@@ -2,6 +2,7 @@ export default function TextareaField({
   hint,
   id,
   label,
+  required = false,
   rows = 5,
   ...textareaProps
 }) {
@@ -13,7 +14,9 @@ export default function TextareaField({
       </label>
       <textarea
         className="form-field__input form-field__textarea"
+        data-required-field={required ? 'true' : undefined}
         id={id}
+        required={required}
         rows={rows}
         {...textareaProps}
       />

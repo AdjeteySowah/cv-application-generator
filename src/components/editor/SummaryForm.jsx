@@ -17,6 +17,7 @@ export default function SummaryForm({ onSummaryChange, summary }) {
         maxLength={SUMMARY_LIMIT}
         onChange={(event) => onSummaryChange(event.target.value)}
         placeholder="E.g. Dedicated Digital Marketing Associate with experience in..."
+        required
         rows={4}
         value={summary}
       />

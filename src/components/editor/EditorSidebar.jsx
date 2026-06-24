@@ -14,6 +14,15 @@ function getItemSnapshotKey(item) {
   return `${item.id}-${JSON.stringify(item)}`;
 }
 
+function getRequiredFieldValue(field) {
+  return field.value.trim();
+}
+
+function clearValidationError(event) {
+  event.currentTarget.classList.remove('is-validation-error');
+  event.currentTarget.removeEventListener('input', clearValidationError);
+}
+
 export default function EditorSidebar({
   onAddEntry,
   onClearResume,
@@ -26,6 +35,50 @@ export default function EditorSidebar({
   onSummaryChange,
   resume,
 }) {
+  function validateBeforeDownload() {
+    const editorPanel = document.getElementById('resume-editor-panel');
+    if (!editorPanel) {
+      onDownloadResume();
+      return;
+    }
+
+    const requiredFields = [
+      ...editorPanel.querySelectorAll('[data-required-field="true"]'),
+    ];
+    const emptyFields = requiredFields.filter(
+      (field) => getRequiredFieldValue(field) === '',
+    );
+
+    requiredFields.forEach((field) => {
+      field.classList.remove('is-validation-error');
+      field.removeEventListener('input', clearValidationError);
+    });
+
+    if (emptyFields.length === 0) {
+      onDownloadResume();
+      return;
+    }
+
+    emptyFields.forEach((field) => {
+      field.classList.add('is-validation-error');
+      field.addEventListener('input', clearValidationError);
+    });
+
+    const firstInvalidField = emptyFields[0];
+    const section = firstInvalidField.closest('.editor-section');
+    const toggle = section?.querySelector('.editor-section__toggle');
+
+    if (toggle?.getAttribute('aria-expanded') === 'false') {
+      toggle.click();
+    }
+
+    setTimeout(() => {
+      firstInvalidField.focus();
+    }, 0);
+
+    window.alert('Please fill out all fields that are not optional.');
+  }
+
   return (
     <div className="editor-stack">
       <ActionBar
@@ -139,7 +192,7 @@ export default function EditorSidebar({
         <Button
           className="download-button"
           icon={<Icon name="download" />}
-          onClick={onDownloadResume}
+          onClick={validateBeforeDownload}
           variant="download"
         >
           Download Resume

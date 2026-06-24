@@ -30,6 +30,7 @@ export default function ProjectForm({ item, onRemove, onSave }) {
         label="Project Name"
         onChange={(event) => updateDraft('name', event.target.value)}
         placeholder="E.g. Fashion Brand Social Media Campaign"
+        required
         value={draft.name}
       />
       <TextInput
@@ -46,6 +47,7 @@ export default function ProjectForm({ item, onRemove, onSave }) {
         label="Date Finished"
         onChange={(event) => updateDraft('dateFinished', event.target.value)}
         placeholder="E.g. March 2025"
+        required
         value={draft.dateFinished}
       />
       <TextInput
@@ -53,6 +55,7 @@ export default function ProjectForm({ item, onRemove, onSave }) {
         label="Tools / Technologies Used"
         onChange={(event) => updateDraft('tools', event.target.value)}
         placeholder="E.g. Canva, Meta Business Suite, Google Analytics"
+        required
         value={draft.tools}
       />
       <BulletEditor
@@ -63,6 +66,7 @@ export default function ProjectForm({ item, onRemove, onSave }) {
           updateDraft('accomplishments', value.split('\n'))
         }
         placeholder="Developed a comprehensive social media strategy for..."
+        required
       />
     </CollectionItemCard>
   );

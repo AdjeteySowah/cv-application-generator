@@ -89,6 +89,7 @@ export default function PersonalDetailsForm({
               onPersonalChange(field.id, event.target.value)
             }
             placeholder={field.placeholder}
+            required={!field.hint}
             type={field.type}
             value={personalDetails[field.id]}
           />

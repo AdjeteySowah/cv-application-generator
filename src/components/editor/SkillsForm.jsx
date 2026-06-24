@@ -12,6 +12,7 @@ export default function SkillsForm({ onSkillsChange, skills }) {
         label="Hard Skills"
         onChange={(event) => onSkillsChange('hard', event.target.value)}
         placeholder="E.g. Digital Marketing, Content Creation, SEO"
+        required
         value={skills.hard}
       />
       <TextInput

@@ -41,7 +41,6 @@ export default function EditorSidebar({
       </EditorSection>
 
       <EditorSection
-        defaultOpen
         iconName="fileText"
         title="Professional Summary"
       >
@@ -70,7 +69,7 @@ export default function EditorSidebar({
         ))}
       </EditorSection>
 
-      <EditorSection defaultOpen iconName="wand" title="Skills">
+      <EditorSection iconName="wand" title="Skills">
         <SkillsForm
           onSkillsChange={(field, value) =>
             onNestedFieldChange('skills', field, value)

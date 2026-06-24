@@ -1,17 +1,14 @@
 import { useId, useState } from 'react';
 import Button from '../ui/Button.jsx';
 import Icon from '../ui/Icon.jsx';
-import EntryListItem from './EntryListItem.jsx';
 
 export default function EditorSection({
   addLabel,
   children,
   defaultOpen = false,
-  entries = [],
   iconName,
   marker,
   onAdd,
-  onToggleEntryVisibility,
   title,
 }) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
@@ -42,23 +39,9 @@ export default function EditorSection({
         hidden={!isOpen}
         id={contentId}
       >
-        {children ? (
-          <div className="editor-section__body">{children}</div>
-        ) : (
-          <ul className="entry-list" aria-label={`${title} entries`}>
-            {entries.map((entry) => (
-              <EntryListItem
-                entry={entry}
-                key={entry.id}
-                onToggleVisibility={
-                  onToggleEntryVisibility
-                    ? () => onToggleEntryVisibility(entry.id)
-                    : undefined
-                }
-              />
-            ))}
-          </ul>
-        )}
+        <div className="editor-section__body">
+          {children}
+        </div>
 
         {onAdd && addLabel && (
           <footer className="editor-section__footer">

@@ -185,7 +185,7 @@ svg {
   border: 0;
   border-radius: 0.7rem;
   color: var(--ink);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
   transition: transform 160ms ease;
 }
@@ -211,6 +211,7 @@ svg {
 .button--dangerGhost {
   background: transparent;
   color: var(--danger);
+  border: 1px solid var(--danger);
 }
 
 .button--dangerGhost:hover {
@@ -219,15 +220,7 @@ svg {
 
 .button--secondary {
   background: var(--control-bg);
-}
-
-.button--primary {
-  background: var(--blue-soft);
-  color: var(--blue-dark);
-}
-
-.button--primary:hover {
-  background: var(--blue-soft-strong);
+  border: 1px solid var(--ink);
 }
 
 .button--secondary:hover,
@@ -236,12 +229,25 @@ svg {
 }
 
 .button--success {
-  background: var(--success);
-  color: var(--surface);
+  background-color: transparent;
+  color: var(--success);
+  border: 1px solid var(--success);
 }
 
 .button--success:hover {
   background: var(--success-strong);
+  color: var(--ink);
+}
+
+.collection-card :is(
+  .button--dangerGhost,
+  .button--secondary,
+  .button--success
+) {
+  width: 7rem;
+  min-height: 0;
+  padding: 1rem 0;
+  font-size: 1.4rem;
 }
 
 .button--download {
@@ -406,33 +412,7 @@ svg {
   padding: 2rem;
 }
 
-.entry-list {
-  list-style: none;
-}
 
-.entry-list__item {
-  display: flex;
-  min-height: 8.6rem;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.8rem;
-  padding: 2rem 2.8rem 2rem 3.2rem;
-  border-bottom: 0.7rem solid var(--app-bg);
-}
-
-.entry-list__item.is-muted {
-  color: var(--muted);
-}
-
-.entry-list__label {
-  min-width: 0;
-  font-size: 2.2rem;
-  font-weight: 800;
-}
-
-.entry-list__visibility {
-  color: var(--muted);
-}
 
 .editor-section__footer {
   display: flex;
@@ -460,17 +440,14 @@ svg {
   gap: 1.6rem;
   border: 0.1rem solid var(--divider);
   border-radius: 0.8rem;
-  background: var(--surface-muted);
   padding: 1.6rem;
 }
 
-.collection-card__header,
 .collection-card__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
 }
 
 .collection-card__header h3 {
@@ -485,8 +462,9 @@ svg {
   gap: 1.4rem;
 }
 
-.collection-card__actions {
-  justify-content: flex-end;
+.collection-card__actions div {
+  display: flex;
+  gap: 1rem;
 }
 
 .preview-panel {
@@ -512,15 +490,12 @@ svg {
   align-content: center;
   justify-items: center;
   padding: 4.5rem 5.6rem;
-  background: var(--resume-blue);
-  color: var(--surface-on-dark);
   text-align: center;
 }
 
 .resume-header__title {
-  color: rgb(255 255 255 / 86%);
-  font-size: 2.1rem;
   font-weight: 700;
+  color: var(--download-bg);
 }
 
 .resume-header h1 {
@@ -548,9 +523,12 @@ svg {
 }
 
 .resume-meta-list li {
-  border: 0.1rem solid rgb(255 255 255 / 28%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  border: 0.1rem solid var(--line);
   border-radius: var(--radius-pill);
-  color: rgb(255 255 255 / 82%);
+  background-color: var(--app-bg);
   font-size: 1.5rem;
   font-weight: 700;
   padding: 0.45rem 1.2rem;
@@ -561,28 +539,39 @@ svg {
   min-width: 0;
   align-items: center;
   gap: 0.7rem;
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-.resume-social-list a {
-  display: inline-flex;
-  border: 0.1rem solid rgb(255 255 255 / 30%);
-  border-radius: var(--radius-pill);
-  color: var(--surface);
   font-size: 1.5rem;
   font-weight: 700;
   padding: 0.45rem 1.2rem;
+  background-color: var(--app-bg);
+  border: 0.1rem solid var(--line);
+  border-radius: var(--radius-pill);
+}
+
+.resume-social-list li {
+  border: 0.1rem solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 0.45rem 1.2rem;
+}
+
+:is(.resume-social-list, .resume-contact-list) a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.5rem;
+  font-weight: 700;
   text-decoration: none;
 }
 
-.resume-social-list a:hover {
-  background: rgb(255 255 255 / 12%);
+.resume-contact-list a {
+  color: var(--ink);
 }
 
-.resume-contact-list .icon {
+:is(
+  .resume-contact-list,
+  .resume-social-list,
+  .resume-meta-list) .icon {
   flex: 0 0 auto;
-  font-size: 2.4rem;
+  color: var(--ink);
 }
 
 .resume-page__body {
@@ -599,8 +588,8 @@ svg {
 .resume-section__title {
   border-bottom: 0.2rem solid var(--ink-strong);
   color: var(--resume-blue-dark);
-  font-size: 1.8rem;
-  font-weight: 800;
+  font-size: 2rem;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.2;
   padding-bottom: 0.8rem;
@@ -614,8 +603,8 @@ svg {
 
 .resume-summary {
   color: var(--text);
-  font-size: 2rem;
   line-height: 1.55;
+  font-weight: 600;
 }
 
 .resume-projects,
@@ -628,7 +617,6 @@ svg {
 .resume-experience {
   display: grid;
   gap: 0.8rem;
-  font-size: 2rem;
   line-height: 1.4;
 }
 
@@ -647,8 +635,8 @@ svg {
 .resume-education h3,
 .resume-certification h3 {
   color: var(--ink-strong);
-  font-size: 2rem;
-  font-weight: 800;
+  font-size: 1.8rem;
+  font-weight: 700;
   line-height: 1.25;
 }
 
@@ -657,8 +645,8 @@ svg {
 .resume-education__date,
 .resume-certification__date {
   color: var(--muted);
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 600;
   text-align: right;
   white-space: nowrap;
 }
@@ -678,7 +666,6 @@ svg {
 .resume-education p,
 .resume-certification p {
   color: var(--text);
-  font-size: 1.8rem;
   font-weight: 600;
 }
 
@@ -694,8 +681,13 @@ svg {
   background: var(--chip-bg);
   color: var(--chip-text);
   font-size: 1.6rem;
-  font-weight: 800;
+  font-weight: 600;
   padding: 0.65rem 1.25rem;
+}
+
+.resume-skills:last-child li {
+  background-color: var(--chip-text);
+  color: white;
 }
 
 .resume-entry__summary {
@@ -712,6 +704,7 @@ svg {
 
 .resume-entry__bullets li {
   padding-left: 0.4rem;
+  font-weight: 600;
 }
 
 @media (max-width: 900px) {
@@ -747,6 +740,7 @@ svg {
     top: 5.7rem;
     right: 0;
     left: 0;
+    bottom: 0;
     max-height: calc(100dvh - 5.7rem);
     overflow-y: auto;
     border-right: 0;
@@ -828,10 +822,6 @@ svg {
     grid-template-columns: 1fr;
   }
 
-  .entry-list__item {
-    padding-inline: 2rem;
-  }
-
   .resume-header h1 {
     font-size: 3rem;
   }
@@ -865,7 +855,7 @@ svg {
 @media print {
   @page {
     margin: 0.55in;
-    size: A4;
+    size: 8.27in 35in;
   }
 
   html,
@@ -873,6 +863,9 @@ svg {
   #root {
     background: var(--surface);
     min-width: 0;
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
   }
 
   .app-shell {
@@ -897,6 +890,8 @@ svg {
     width: 100%;
     min-height: 0;
     box-shadow: none;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .resume-header {
@@ -909,5 +904,15 @@ svg {
   .resume-education,
   .resume-certification {
     break-inside: avoid;
+  }
+
+  .resume-project__header,
+  .resume-experience__header,
+  .resume-education,
+  .resume-certification {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    gap: 2rem;
+    align-items: start;
   }
 }

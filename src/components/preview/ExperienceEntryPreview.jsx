@@ -16,8 +16,8 @@ export default function ExperienceEntryPreview({ entry }) {
       {entry.summary && <p className="resume-entry__summary">{entry.summary}</p>}
       {entry.achievements?.length > 0 && (
         <ul className="resume-entry__bullets">
-          {entry.achievements.map((achievement) => (
-            <li key={achievement}>{achievement}</li>
+          {entry.achievements.map((achievement, index) => (
+            <li key={`${entry.id}-achievement-${index}`}>{achievement}</li>
           ))}
         </ul>
       )}

@@ -6,17 +6,25 @@ function parseSkillTags(value) {
 }
 
 export default function SkillsPreview({ skills }) {
-  const tags = [...parseSkillTags(skills.hard), ...parseSkillTags(skills.soft)];
+  const hardSkillTags = [...parseSkillTags(skills.hard)];
+  const softSkillTags = [...parseSkillTags(skills.soft)];
 
-  if (tags.length === 0) {
+  if (hardSkillTags.length === 0 && softSkillTags.length === 0) {
     return null;
   }
 
   return (
-    <ul className="resume-skills" aria-label="Skills">
-      {tags.map((skill, index) => (
-        <li key={`${skill}-${index}`}>{skill}</li>
-      ))}
-    </ul>
+    <>
+      <ul className="resume-skills" aria-label="Hard skills">
+        {hardSkillTags.map((skill, index) => (
+          <li key={`${skill}-${index}`}>{skill}</li>
+        ))}
+      </ul>
+      <ul className="resume-skills" aria-label="Soft skills">
+        {softSkillTags.map((skill, index) => (
+          <li key={`${skill}-${index}`}>{skill}</li>
+        ))}
+      </ul>
+    </>
   );
 }

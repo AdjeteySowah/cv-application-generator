@@ -24,7 +24,12 @@ export default function ProjectsPreview({ projects }) {
             {project.dateFinished && <p>{project.dateFinished}</p>}
           </div>
           {project.link && (
-            <a className="resume-project__link" href={project.link}>
+            <a
+              className="resume-project__link"
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {project.link}
             </a>
           )}
@@ -33,8 +38,8 @@ export default function ProjectsPreview({ projects }) {
           )}
           {project.accomplishments?.length > 0 && (
             <ul className="resume-entry__bullets">
-              {project.accomplishments.map((accomplishment) => (
-                <li key={accomplishment}>{accomplishment}</li>
+              {project.accomplishments.map((accomplishment, index) => (
+                <li key={`${project.id}-accomplishment-${index}`}>{accomplishment}</li>
               ))}
             </ul>
           )}

@@ -11,8 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
-PROMPT.md
-CLAUDE.md
+AGENTS.md
+PLANS.md
 cv-builder.html
 cv-builder.png
 HANDOFF.md

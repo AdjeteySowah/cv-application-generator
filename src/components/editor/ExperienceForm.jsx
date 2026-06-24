@@ -15,21 +15,28 @@ export default function ExperienceForm({ item, onRemove, onSave }) {
       itemLabel={draft.company || draft.jobTitle || 'experience'}
       onCancel={() => setDraft(item)}
       onRemove={onRemove}
-      onSave={() => onSave(draft)}
+      onSave={() =>
+        onSave({
+          ...draft,
+          achievements: draft.achievements
+            .map((line) => line.trim())
+            .filter((line) => line !== '')
+        })
+      }
       title={draft.company || 'Experience'}
     >
       <TextInput
         id={`${item.id}-job-title`}
         label="Job Title"
         onChange={(event) => updateDraft('jobTitle', event.target.value)}
-        placeholder="E.g. Field Engagement Coordinator"
+        placeholder="E.g. Digital Marketing Associate"
         value={draft.jobTitle}
       />
       <TextInput
         id={`${item.id}-company`}
         label="Company"
         onChange={(event) => updateDraft('company', event.target.value)}
-        placeholder="E.g. Quantum Talents Consulting"
+        placeholder="E.g. Bright Horizon Media"
         value={draft.company}
       />
       <div className="form-row">
@@ -37,14 +44,14 @@ export default function ExperienceForm({ item, onRemove, onSave }) {
           id={`${item.id}-start-date`}
           label="Start Date"
           onChange={(event) => updateDraft('startDate', event.target.value)}
-          placeholder="E.g. Aug 2023"
+          placeholder="E.g. July 2023"
           value={draft.startDate}
         />
         <TextInput
           id={`${item.id}-end-date`}
           label="End Date"
           onChange={(event) => updateDraft('endDate', event.target.value)}
-          placeholder="E.g. Sep 2024"
+          placeholder="E.g. Dec 2024 / Present"
           value={draft.endDate}
         />
       </div>
@@ -53,15 +60,9 @@ export default function ExperienceForm({ item, onRemove, onSave }) {
         id={`${item.id}-achievements`}
         label="Responsibilities / Achievements"
         onChange={(value) =>
-          updateDraft(
-            'achievements',
-            value
-              .split('\n')
-              .map((line) => line.trim())
-              .filter(Boolean),
-          )
+          updateDraft('achievements', value.split('\n'))
         }
-        placeholder="Delivered prepared proposals and presentations..."
+        placeholder="Managed social media campaigns across multiple platforms..."
       />
     </CollectionItemCard>
   );

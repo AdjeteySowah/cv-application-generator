@@ -12,31 +12,33 @@ export default function CollectionItemCard({
     <article className="collection-card" aria-label={itemLabel || title}>
       <header className="collection-card__header">
         <h3>{title}</h3>
-        {onRemove && (
-          <Button
-            aria-label={`Remove ${itemLabel || title}`}
-            onClick={onRemove}
-            variant="dangerGhost"
-          >
-            Remove
-          </Button>
-        )}
       </header>
 
       <div className="collection-card__body">{children}</div>
 
-      {(onCancel || onSave) && (
+      {(onRemove || onCancel || onSave) && (
         <footer className="collection-card__actions">
-          {onCancel && (
-            <Button onClick={onCancel} variant="secondary">
-              Cancel
+          {onRemove && (
+            <Button
+              aria-label={`Remove ${itemLabel || title}`}
+              onClick={onRemove}
+              variant="dangerGhost"
+            >
+              Remove
             </Button>
           )}
-          {onSave && (
-            <Button onClick={onSave} variant="success">
-              Save
-            </Button>
-          )}
+          <div>
+            {onCancel && (
+              <Button onClick={onCancel} variant="secondary">
+                Cancel
+              </Button>
+            )}
+            {onSave && (
+              <Button onClick={onSave} variant="success">
+                Save
+              </Button>
+            )}
+          </div>
         </footer>
       )}
     </article>

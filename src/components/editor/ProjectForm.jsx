@@ -15,14 +15,21 @@ export default function ProjectForm({ item, onRemove, onSave }) {
       itemLabel={draft.name || 'project'}
       onCancel={() => setDraft(item)}
       onRemove={onRemove}
-      onSave={() => onSave(draft)}
+      onSave={() =>
+        onSave({
+          ...draft,
+          accomplishments: draft.accomplishments
+            .map(line => line.trim())
+            .filter(line => line !== '')
+        })
+      }
       title={draft.name || 'Personal Project'}
     >
       <TextInput
         id={`${item.id}-name`}
         label="Project Name"
         onChange={(event) => updateDraft('name', event.target.value)}
-        placeholder="E.g. To-Do List Application"
+        placeholder="E.g. Fashion Brand Social Media Campaign"
         value={draft.name}
       />
       <TextInput
@@ -30,7 +37,7 @@ export default function ProjectForm({ item, onRemove, onSave }) {
         id={`${item.id}-link`}
         label="Project Link"
         onChange={(event) => updateDraft('link', event.target.value)}
-        placeholder="https://github.com/username/project"
+        placeholder="https://example.com/fashion-campaign"
         type="url"
         value={draft.link}
       />
@@ -38,14 +45,14 @@ export default function ProjectForm({ item, onRemove, onSave }) {
         id={`${item.id}-date-finished`}
         label="Date Finished"
         onChange={(event) => updateDraft('dateFinished', event.target.value)}
-        placeholder="E.g. April 2025"
+        placeholder="E.g. March 2025"
         value={draft.dateFinished}
       />
       <TextInput
         id={`${item.id}-tools`}
         label="Tools / Technologies Used"
         onChange={(event) => updateDraft('tools', event.target.value)}
-        placeholder="E.g. HTML, CSS, JavaScript, React"
+        placeholder="E.g. Canva, Meta Business Suite, Google Analytics"
         value={draft.tools}
       />
       <BulletEditor
@@ -53,15 +60,9 @@ export default function ProjectForm({ item, onRemove, onSave }) {
         id={`${item.id}-accomplishments`}
         label="Project Features / Accomplishments"
         onChange={(value) =>
-          updateDraft(
-            'accomplishments',
-            value
-              .split('\n')
-              .map((line) => line.trim())
-              .filter(Boolean),
-          )
+          updateDraft('accomplishments', value.split('\n'))
         }
-        placeholder="Built a modular to-do app..."
+        placeholder="Developed a comprehensive social media strategy for..."
       />
     </CollectionItemCard>
   );

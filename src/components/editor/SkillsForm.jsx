@@ -11,7 +11,7 @@ export default function SkillsForm({ onSkillsChange, skills }) {
         id="hard-skills"
         label="Hard Skills"
         onChange={(event) => onSkillsChange('hard', event.target.value)}
-        placeholder="E.g. HTML, CSS, JavaScript, React, Git & GitHub"
+        placeholder="E.g. Digital Marketing, Content Creation, SEO"
         value={skills.hard}
       />
       <TextInput
@@ -19,7 +19,7 @@ export default function SkillsForm({ onSkillsChange, skills }) {
         id="soft-skills"
         label="Soft Skills"
         onChange={(event) => onSkillsChange('soft', event.target.value)}
-        placeholder="E.g. Teamwork, Communication, Problem Solving, Punctuality"
+        placeholder="E.g. Teamwork, Communication, Creativity"
         value={skills.soft}
       />
     </form>

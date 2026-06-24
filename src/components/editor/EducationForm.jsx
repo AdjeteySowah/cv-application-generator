@@ -36,7 +36,7 @@ export default function EducationForm({ item, onRemove, onSave }) {
         id={`${item.id}-degree`}
         label="Degree"
         onChange={(event) => updateDraft('degree', event.target.value)}
-        placeholder="E.g. General Arts"
+        placeholder="E.g. Business"
         value={draft.degree}
       />
       <div className="form-row">

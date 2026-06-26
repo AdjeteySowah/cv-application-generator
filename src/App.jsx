@@ -24,6 +24,15 @@ function updateCollectionItem(items, itemId, updater) {
 
 export default function App() {
   const [resume, setResume] = useState(() => createExampleResume());
+  const [pdfHeight, setPdfHeight] = useState(() => {
+    const value = getComputedStyle(document.documentElement)
+      .getPropertyValue('--pdf-height')
+      .trim();
+
+    return Number.parseFloat(value);
+  });
+  const [isPdfHeightModalOpen, setIsPdfHeightModalOpen] = useState(false);
+
 
   function handleNestedFieldChange(sectionName, field, value) {
     setResume((currentResume) => ({
@@ -100,7 +109,34 @@ export default function App() {
   }
 
   function handleDownloadResume() {
+    if(!localStorage.getItem('alertShown')) {
+      window.alert(
+        'For the best PDF output and single-page resume downloads, use Google Chrome or Microsoft Edge. Safari may paginate long resumes due to browser print limitations. You can go back and adjust the PDF height before saving. \n\nDepending on your browser, you may need to enable Background Graphics and disable Headers and Footers in the print settings before saving the resume as a PDF.'
+      );
+      localStorage.setItem('alertShown', 'true');
+    }
     window.print();
+  }
+
+  function handleOpenPdfHeightModal() {
+    setIsPdfHeightModalOpen(true);
+  }
+
+  function handleIncreasePdfHeight() {
+    setPdfHeight((currentHeight) => currentHeight + 1);
+  }
+
+  function handleDecreasePdfHeight() {
+    setPdfHeight((currentHeight) => Math.max(11.69, currentHeight - 1));
+  }
+
+  function handleSavePdfHeight() {
+    document.documentElement.style.setProperty(
+      '--pdf-height',
+      `${pdfHeight}in`,
+    );
+
+    setIsPdfHeightModalOpen(false);
   }
 
   return (
@@ -108,6 +144,8 @@ export default function App() {
       editor={
         <EditorSidebar
           resume={resume}
+          isModalOpen={isPdfHeightModalOpen}
+          pdfHeight={pdfHeight}
           onAddEntry={handleAddEntry}
           onClearResume={() => setResume(createEmptyResume())}
           onCollectionItemChange={handleCollectionItemChange}
@@ -119,6 +157,11 @@ export default function App() {
           onPersonalChange={handlePersonalChange}
           onRemoveEntry={handleRemoveEntry}
           onSummaryChange={handleSummaryChange}
+          onAdjustPdfHeight={handleOpenPdfHeightModal}
+          onDecreasePdfHeight={handleDecreasePdfHeight}
+          onIncreasePdfHeight={handleIncreasePdfHeight}
+          onCloseModal={handleSavePdfHeight}
+          onDone={handleSavePdfHeight}
         />
       }
       preview={<ResumePreview resume={resume} />}

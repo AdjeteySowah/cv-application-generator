@@ -21,6 +21,15 @@ const iconPaths = {
       <path d="M4.75 15.25h10.5" />
     </>
   ),
+  topBottomArrow: (
+    <>
+      <path d="M4 2.75h12" />
+      <path d="M4 17.25h12" />
+      <path d="M10 4.5v11" />
+      <path d="m7 7.5 3-3 3 3" />
+      <path d="m7 12.5 3 3 3-3" />
+    </>
+  ),
   fileText: (
     <>
       <path d="M5.25 2.75h6.5l3 3v11.5H5.25V2.75Z" />

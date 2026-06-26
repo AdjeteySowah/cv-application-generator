@@ -2,10 +2,10 @@ export default function Button({
   children,
   className = '',
   icon,
-  variant = 'primary',
+  variant,
   ...buttonProps
 }) {
-  const classNames = ['button', `button--${variant}`, className]
+  const classNames = ['button', variant && `button--${variant}`, className]
     .filter(Boolean)
     .join(' ');
 

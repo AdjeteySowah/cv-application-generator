@@ -35,6 +35,7 @@
   --radius-card: 0.8rem;
   --radius-control: 0.7rem;
   --radius-pill: 999rem;
+  --pdf-height: 35in;
 }
 
 * {
@@ -417,8 +418,6 @@ svg {
   padding: 2rem;
 }
 
-
-
 .editor-section__footer {
   display: flex;
   justify-content: center;
@@ -433,11 +432,110 @@ svg {
   background: var(--surface);
   margin: 0 -1.6rem -1.6rem;
   padding: 1.4rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.download-button {
+.download-button,
+.adjust-button {
   width: 100%;
   box-shadow: 0 0.6rem 1.4rem rgb(55 65 81 / 18%);
+}
+
+@keyframes slideUpBounce {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.modal-box {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: var(--chip-text);
+  color: var(--surface);
+  border-radius: 8px;
+  padding: 1.6rem;
+  margin: 0 1.2rem 1.4rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: auto;
+  gap: 1rem;
+  animation: slideUpBounce 0.5s ease-out;
+}
+
+.modal-box__close {
+  min-height: auto;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  justify-self: end;
+}
+
+.modal-box__close:hover {
+  background-color: var(--danger);
+  color: var(--surface);
+}
+
+.modal-box__description {
+  text-align: center;
+}
+
+.modal-box__controls {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.modal-box__controls .inc-pdf-height,
+.modal-box__controls .dec-pdf-height {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 3rem;
+  background-color: transparent;
+  color: var(--app-bg);
+}
+
+.modal-box__controls :is(
+  .inc-pdf-height,
+  .dec-pdf-height
+):hover {
+  background-color: var(--surface);
+  color: var(--chip-text);
+  transform: translateY(0);
+}
+
+.modal-box__height {
+  font-weight: 700;
+  font-size: 2rem;
+  background-color: var(--surface);
+  color: var(--chip-text);
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-done {
+  justify-self: center;
+  width: 7rem;
+  color: var(--chip-text);
 }
 
 .collection-card {
@@ -858,9 +956,22 @@ svg {
 }
 
 @media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  :root {
+    --pdf-height: 35in;
+    --surface: #ffffff;
+    --app-bg: #f1f5f9;
+    --chip-bg: #e0f2fe;
+    --chip-text: #075985;
+  }
+
   @page {
     margin: 0.55in;
-    size: 8.27in 35in;
+    size: 8.27in var(--pdf-height);
   }
 
   html,
@@ -919,5 +1030,20 @@ svg {
     grid-template-columns: minmax(0, 1fr) max-content;
     gap: 2rem;
     align-items: start;
+  }
+
+  .resume-contact-list li,
+  .resume-meta-list li {
+    background-color: var(--app-bg);
+  }
+
+  .resume-skills:first-child li {
+    background: var(--chip-bg);
+    color: var(--chip-text);
+  }
+
+  .resume-skills:last-child li {
+    background-color: var(--chip-text);
+    color: var(--surface);
   }
 }

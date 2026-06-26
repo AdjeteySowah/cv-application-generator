@@ -7,6 +7,7 @@ import PersonalDetailsForm from './PersonalDetailsForm.jsx';
 import ProjectForm from './ProjectForm.jsx';
 import SkillsForm from './SkillsForm.jsx';
 import SummaryForm from './SummaryForm.jsx';
+import ModalBox from './ModalBox.jsx';
 import Button from '../ui/Button.jsx';
 import Icon from '../ui/Icon.jsx';
 
@@ -34,6 +35,13 @@ export default function EditorSidebar({
   onRemoveEntry,
   onSummaryChange,
   resume,
+  onAdjustPdfHeight,
+  pdfHeight,
+  onDecreasePdfHeight,
+  onIncreasePdfHeight,
+  isModalOpen,
+  onCloseModal,
+  onDone,
 }) {
   function validateBeforeDownload() {
     const editorPanel = document.getElementById('resume-editor-panel');
@@ -197,6 +205,24 @@ export default function EditorSidebar({
         >
           Download Resume
         </Button>
+        <Button
+          className="adjust-button"
+          icon={<Icon name="topBottomArrow" />}
+          onClick={onAdjustPdfHeight}
+          variant="secondary"
+        >
+          Adjust PDF Height
+        </Button>
+
+        {isModalOpen && (
+          <ModalBox
+            pdfHeight={pdfHeight}
+            onCloseModal={onCloseModal}
+            onDecreasePdfHeight={onDecreasePdfHeight}
+            onIncreasePdfHeight={onIncreasePdfHeight}
+            onDone={onDone}
+          />
+        )}
       </footer>
     </div>
   );

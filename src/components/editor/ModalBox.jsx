@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import Button from '../ui/Button.jsx';
 import Icon from '../ui/Icon.jsx';
 
@@ -8,8 +9,27 @@ export default function ModalBox({
   onIncreasePdfHeight,
   onDone,
 }) {
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    function handleClick(event) {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target)
+      ) {
+        onCloseModal();
+      }
+    }
+
+    document.addEventListener('mousedown', handleClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, [onCloseModal]);
+
   return (
-    <div className="modal-box">
+    <div className="modal-box" ref={modalRef}>
       <Button
         className="modal-box__close"
         onClick={onCloseModal}

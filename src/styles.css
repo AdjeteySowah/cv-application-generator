@@ -35,7 +35,7 @@
   --radius-card: 0.8rem;
   --radius-control: 0.7rem;
   --radius-pill: 999rem;
-  --pdf-height: 35in;
+  --pdf-height: 30in;
 }
 
 * {
@@ -914,6 +914,11 @@ svg {
   .button {
     min-height: 4.6rem;
     padding-inline: 1rem;
+  }
+
+  .modal-box__close {
+    min-height: auto;
+    padding: 0.5rem;
   }
 
   .editor-section__header,

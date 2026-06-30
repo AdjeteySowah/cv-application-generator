@@ -3,14 +3,12 @@
 :root {
   --app-bg: #f1f5f9;
   --surface: #ffffff;
-  --surface-muted: #f8fafc;
   --control-bg: #f8fafc;
   --control-bg-strong: #e2e8f0;
   --ink: #0f172a;
   --ink-strong: #111827;
   --text: #334155;
   --muted: #64748b;
-  --muted-light: #94a3b8;
   --danger: #dc2626;
   --danger-soft: rgb(220 38 38 / 8%);
   --success: #22c55e;
@@ -18,9 +16,7 @@
   --divider: #e2e8f0;
   --line: #cbd5e1;
   --blue: #2563eb;
-  --blue-dark: #1e3a8a;
   --blue-soft: #dbeafe;
-  --blue-soft-strong: #bfdbfe;
   --chip-bg: #e0f2fe;
   --chip-text: #075985;
   --control-frame: #f0f2f5;
@@ -28,8 +24,6 @@
   --download-bg-strong: #1f2937;
   --hover-scrim: rgb(15 23 42 / 7%);
   --focus-ring: rgb(37 99 235 / 28%);
-  --surface-on-dark: #ffffff;
-  --resume-blue: #113d52;
   --resume-blue-dark: #0d374b;
   --shadow-page: 0 1.6rem 3.8rem rgb(15 23 42 / 14%);
   --radius-card: 0.8rem;
@@ -203,6 +197,7 @@ svg {
 .button:focus-visible,
 .icon-button:focus-visible,
 .resume-social-list a:focus-visible,
+.resume-contact-list a:focus-visible,
 .resume-project__link:focus-visible,
 .form-field__input:focus-visible {
   outline: 0.3rem solid var(--focus-ring);

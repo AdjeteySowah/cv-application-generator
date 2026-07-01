@@ -19,7 +19,7 @@ const entryFactories = {
 };
 
 function updateCollectionItem(items, itemId, updater) {
-  return items.map((item) => (item.id === itemId ? updater(item) : item));
+  return items.map((item) => (item.id === itemId ? updater() : item));
 }
 
 export default function App() {
@@ -68,35 +68,15 @@ export default function App() {
     }));
   }
 
-  function handleCollectionItemChange(collectionName, itemId, field, value) {
-    setResume((currentResume) => ({
-      ...currentResume,
-      [collectionName]: updateCollectionItem(
-        currentResume[collectionName],
-        itemId,
-        (item) => ({ ...item, [field]: value }),
-      ),
-    }));
-  }
-
   function handleCollectionItemPatch(collectionName, itemId, patch) {
     setResume((currentResume) => ({
       ...currentResume,
       [collectionName]: updateCollectionItem(
         currentResume[collectionName],
         itemId,
-        (item) => ({ ...item, ...patch }),
+        () => ({ ...patch }),
       ),
     }));
-  }
-
-  function handleCollectionItemListChange(collectionName, itemId, field, value) {
-    const values = value
-      .split('\n')
-      .map((item) => item.trim())
-      .filter(Boolean);
-
-    handleCollectionItemChange(collectionName, itemId, field, values);
   }
 
   function handleRemoveEntry(collectionName, itemId) {
@@ -148,8 +128,6 @@ export default function App() {
           pdfHeight={pdfHeight}
           onAddEntry={handleAddEntry}
           onClearResume={() => setResume(createEmptyResume())}
-          onCollectionItemChange={handleCollectionItemChange}
-          onCollectionItemListChange={handleCollectionItemListChange}
           onCollectionItemPatch={handleCollectionItemPatch}
           onDownloadResume={handleDownloadResume}
           onLoadExample={() => setResume(createExampleResume())}

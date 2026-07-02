@@ -32,11 +32,10 @@ export default function ModalBox({
     <div className="modal-box" ref={modalRef}>
       <Button
         className="modal-box__close"
-        onClick={onCloseModal}
         aria-label="Close"
-      >
-        <Icon name="x" />
-      </Button>
+        icon={<Icon name="x" />}
+        onClick={onCloseModal}
+      />
 
       <p className="modal-box__description">
         If there was too much blank space at the bottom of the PDF,

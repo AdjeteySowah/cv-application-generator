@@ -1,6 +1,6 @@
 export default function Button({
   children,
-  className = '',
+  className,
   icon,
   variant,
   ...buttonProps
@@ -16,7 +16,7 @@ export default function Button({
           {icon}
         </span>
       )}
-      <span>{children}</span>
+      {children && <span>{children}</span>}
     </button>
   );
 }

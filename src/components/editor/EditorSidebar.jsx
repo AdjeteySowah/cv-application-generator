@@ -45,10 +45,6 @@ export default function EditorSidebar({
 }) {
   function validateBeforeDownload() {
     const editorPanel = document.getElementById('resume-editor-panel');
-    if (!editorPanel) {
-      onDownloadResume();
-      return;
-    }
 
     const requiredFields = [
       ...editorPanel.querySelectorAll('[data-required-field="true"]'),
@@ -56,11 +52,6 @@ export default function EditorSidebar({
     const emptyFields = requiredFields.filter(
       (field) => getRequiredFieldValue(field) === '',
     );
-
-    requiredFields.forEach((field) => {
-      field.classList.remove('is-validation-error');
-      field.removeEventListener('input', clearValidationError);
-    });
 
     if (emptyFields.length === 0) {
       onDownloadResume();
@@ -196,7 +187,7 @@ export default function EditorSidebar({
         ))}
       </EditorSection>
 
-      <footer className="download-wrapper">
+      <footer className="editor-footer">
         <Button
           className="download-button"
           icon={<Icon name="download" />}

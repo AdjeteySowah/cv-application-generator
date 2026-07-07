@@ -419,7 +419,7 @@ svg {
   padding: 2.3rem 2rem 2.5rem;
 }
 
-.download-wrapper {
+.editor-footer {
   position: sticky;
   bottom: 0;
   z-index: 2;
@@ -529,7 +529,7 @@ svg {
 
 .modal-done {
   justify-self: center;
-  width: 7rem;
+  width: 100%;
   color: var(--chip-text);
 }
 

@@ -14,23 +14,22 @@ function hasListItems(entry, fields) {
   return fields.some((field) => entry[field]?.length > 0);
 }
 
-function isPreviewVisible(entry) {
-  return entry.isVisible ?? true;
-}
-
 export default function ResumePreview({ resume }) {
   const educationEntries = resume.education.filter(
-    (entry) =>
-      isPreviewVisible(entry) &&
-      hasAnyValue(entry, ['school', 'degree', 'startDate', 'endDate']),
+    (entry) => 
+      hasAnyValue(entry, [
+        'school',
+        'degree',
+        'location',
+        'startDate',
+        'endDate',
+      ]),
   );
   const experienceEntries = resume.experience.filter(
     (entry) =>
-      isPreviewVisible(entry) &&
       (hasAnyValue(entry, [
         'company',
         'jobTitle',
-        'summary',
         'startDate',
         'endDate',
       ]) ||

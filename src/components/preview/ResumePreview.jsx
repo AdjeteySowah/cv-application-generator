@@ -1,7 +1,7 @@
-import CertificationsPreview from './CertificationsPreview.jsx';
+import CertificationEntryPreview from './CertificationEntryPreview.jsx';
 import EducationEntryPreview from './EducationEntryPreview.jsx';
 import ExperienceEntryPreview from './ExperienceEntryPreview.jsx';
-import ProjectsPreview from './ProjectsPreview.jsx';
+import ProjectEntryPreview from './ProjectEntryPreview.jsx';
 import ResumeHeader from './ResumeHeader.jsx';
 import ResumeSection from './ResumeSection.jsx';
 import SkillsPreview from './SkillsPreview.jsx';
@@ -35,14 +35,15 @@ export default function ResumePreview({ resume }) {
       ]) ||
         hasListItems(entry, ['achievements'])),
   );
-  const hasProjects = resume.projects.some(
-    (project) =>
-      hasAnyValue(project, ['name', 'link', 'dateFinished', 'tools']) ||
-      hasListItems(project, ['accomplishments']),
+  const projectEntries = resume.projects.filter(
+    (entry) =>
+      hasAnyValue(entry, ['name', 'link', 'dateFinished', 'tools']) ||
+      hasListItems(entry, ['accomplishments']),
   );
   const hasSkills = resume.skills.hard.trim() || resume.skills.soft.trim();
-  const hasCertifications = resume.certifications.some((certification) =>
-    hasAnyValue(certification, ['issuer', 'name', 'dateAcquired']),
+  const certificationEntries = resume.certifications.filter(
+    (entry) =>
+      hasAnyValue(entry, ['issuer', 'name', 'dateAcquired']),
   );
 
   return (
@@ -55,9 +56,11 @@ export default function ResumePreview({ resume }) {
           </ResumeSection>
         )}
 
-        {hasProjects && (
+        {projectEntries.length > 0 && (
           <ResumeSection title="Personal Projects">
-            <ProjectsPreview projects={resume.projects} />
+            {projectEntries.map((entry) => (
+              <ProjectEntryPreview entry={entry} key={entry.id} />
+            ))}
           </ResumeSection>
         )}
 
@@ -83,9 +86,11 @@ export default function ResumePreview({ resume }) {
           </ResumeSection>
         )}
 
-        {hasCertifications && (
+        {certificationEntries.length > 0 && (
           <ResumeSection title="Certifications & Awards">
-            <CertificationsPreview certifications={resume.certifications} />
+            {certificationEntries.map((entry) => (
+              <CertificationEntryPreview entry={entry} key={entry.id} />
+            ))}
           </ResumeSection>
         )}
       </div>

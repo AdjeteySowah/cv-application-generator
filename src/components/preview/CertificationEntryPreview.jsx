@@ -1,33 +1,17 @@
-function hasCertificationContent(certification) {
-  return (
-    certification.issuer?.trim() ||
-    certification.name?.trim() ||
-    certification.dateAcquired?.trim()
-  );
-}
-
-export default function CertificationsPreview({ certifications }) {
-  const visibleCertifications = certifications.filter(hasCertificationContent);
-
-  if (visibleCertifications.length === 0) {
-    return null;
-  }
-
+export default function CertificationEntryPreview({ entry }) {
   return (
     <div className="resume-certifications">
-      {visibleCertifications.map((certification) => (
-        <article className="resume-certification" key={certification.id}>
-          <div>
-            {certification.issuer && <h3>{certification.issuer}</h3>}
-            {certification.name && <p>{certification.name}</p>}
-          </div>
-          {certification.dateAcquired && (
-            <p className="resume-certification__date">
-              {certification.dateAcquired}
-            </p>
-          )}
-        </article>
-      ))}
+      <article className="resume-certification" key={entry.id}>
+        <div>
+          {entry.issuer && <h3>{entry.issuer}</h3>}
+          {entry.name && <p>{entry.name}</p>}
+        </div>
+        {entry.dateAcquired && (
+          <p className="resume-certification__date">
+            {entry.dateAcquired}
+          </p>
+        )}
+      </article>
     </div>
   );
 }
